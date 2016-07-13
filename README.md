@@ -10,7 +10,17 @@ Usage
 -----
 
 ```
-Usage ...
+usage: media_tools [-h] [-v] [-mp3] source
+
+Media Tools
+
+positional arguments:
+  source         source file
+
+optional arguments:
+  -h, --help     show this help message and exit
+  -v, --version  show program's version number and exit
+  -mp3           Convert to mp3
 ```
 
 TODO
@@ -18,7 +28,7 @@ TODO
 
 `Media tools` is a work in progress, so any ideas and patches are appreciated.
 
-* [ ] Convert any media to mp3
+* [x] Convert any media to mp3
 * [ ] Cut part of mp3 file
 
 Contributing
