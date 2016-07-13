@@ -1,0 +1,70 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+__author__    = "nagracks"
+__date__      = "13-07-2016"
+__license__   = "GPL3"
+__copyright__ = "Copyright © 2016 nagracks"
+
+import argparse
+import os
+import subprocess
+
+def parse_args():
+    """Parse commandline args with argparse
+    :returns: args
+
+    """
+    parser = argparse.ArgumentParser(description="Media Tools")
+    parser.add_argument('-v',
+                        '--version',
+                        action='version',
+                        version='%(prog)s version 0.1')
+    # Positional args #
+    parser.add_argument('source',
+                        action='store',
+                        help="source file")
+    # Boolean args #
+    parser.add_argument('-mp3',
+                        dest='mp3',
+                        action='store_true',
+                        help="Convert to mp3")
+
+    args = parser.parse_args()
+    return args
+
+class MediaTools(object):
+
+    """MediaTools"""
+
+    def __init__(self, source):
+        """Initialise """
+        self.source = source
+        # Get file name and file extension #
+        self.fn, self.fe = os.path.splitext(source)
+
+    def convert_to_mp3(self):
+        """Convert any media file to mp3
+        :returns: None
+
+        """
+        in_file = self.source
+        # output file name, with mp3 extension #
+        out_file = self.fn + '.mp3'
+
+        # ffmpeg command, converts input file to mp3 #
+        # -b:a, audio bit rate of mp3 file set to 128kbps #
+        # -vn, disable video recording #
+        ffmpeg_cmd = ("ffmpeg -i {in_file} -b:a 128K -vn {out_file}"
+                      "".format(in_file=in_file, out_file=out_file))
+        # Run it #
+        subprocess.call(ffmpeg_cmd, shell=True)
+
+if __name__ == "__main__":
+    args = parse_args()
+
+    # Initialise class #
+    media_tools = MediaTools(args.source)
+    if args.mp3:
+        media_tools.convert_to_mp3()
+
