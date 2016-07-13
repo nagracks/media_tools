@@ -10,7 +10,7 @@ Usage
 -----
 
 ```
-usage: media_tools [-h] [-v] [-cut Start Stop] [-mp3] source
+usage: media_tools [-h] [-v] [-cut Start Stop] [-mp3] [-mp4] source
 
 Media Tools
 
@@ -22,6 +22,7 @@ optional arguments:
   -v, --version    show program's version number and exit
   -cut Start Stop  Cut mp3 files
   -mp3             Convert to mp3
+  -mp4             Convert to mp4
 ```
 
 TODO

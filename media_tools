@@ -36,6 +36,10 @@ def parse_args():
                         dest='mp3',
                         action='store_true',
                         help="Convert to mp3")
+    parser.add_argument('-mp4',
+                        dest='mp4',
+                        action='store_true',
+                        help="Convert to mp4")
 
     args = parser.parse_args()
     return args
@@ -86,17 +90,31 @@ class MediaTools(object):
         # Run it #
         subprocess.call(ffmpeg_cmd, shell=True)
 
-if __name__ == "__main__":
-   # Parse args #
-   args = parse_args()
+    def convert_to_mp4(self):
+        """Convert any media file to mp4
+        :returns: None
 
-   # Initialise class #
-   media_tools = MediaTools(args.source)
-   # Args conditions #
-   if args.mp3:
-       media_tools.convert_to_mp3()
-   elif args.cut:
-       # unpacking start and stop values #
-       # from args.cut, It has 2 values #
-       start, stop = args.cut
-       media_tools.cut_it(start, stop)
+        """
+        in_file = self.source
+        out_file = self.fn + '.mp4'
+
+        ffmpeg_cmd = ("ffmpeg -i {in_file} -codec copy {out_file}"
+                      "".format(in_file=in_file, out_file=out_file))
+        subprocess.call(ffmpeg_cmd, shell=True)
+
+if __name__ == "__main__":
+    # Parse args #
+    args = parse_args()
+
+    # Initialise class #
+    media_tools = MediaTools(args.source)
+    # Args conditions #
+    if args.mp3:
+        media_tools.convert_to_mp3()
+    elif args.mp4:
+        media_tools.convert_to_mp4()
+    elif args.cut:
+        # unpacking start and stop values #
+        # from args.cut, It has 2 values #
+        start, stop = args.cut
+        media_tools.cut_it(start, stop)
