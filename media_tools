@@ -24,6 +24,13 @@ def parse_args():
     parser.add_argument('source',
                         action='store',
                         help="source file")
+    # Optional args #
+    parser.add_argument('-cut',
+                        dest='cut',
+                        nargs=2,
+                        metavar=('Start', 'Stop'),
+                        action='store',
+                        help="Cut mp3 files")
     # Boolean args #
     parser.add_argument('-mp3',
                         dest='mp3',
@@ -49,7 +56,7 @@ class MediaTools(object):
 
         """
         in_file = self.source
-        # output file name, with mp3 extension #
+        # Output file name, with mp3 extension #
         out_file = self.fn + '.mp3'
 
         # ffmpeg command, converts input file to mp3 #
@@ -60,11 +67,36 @@ class MediaTools(object):
         # Run it #
         subprocess.call(ffmpeg_cmd, shell=True)
 
+    def cut_it(self, start, stop):
+        """Cut from mp3 files
+
+        :start: start point 
+        :end: end point
+        :returns: None
+
+        """
+        in_file = self.source
+        # Output file name, with _cutted postfix #
+        out_file = self.fn + '_cutted' + '.mp3'
+
+        # ffmpeg command #
+        ffmpeg_cmd = ("ffmpeg -ss {start} -t {stop} -i {in_file} {out_file}"
+                      "".format(start=start, stop=stop, 
+                                in_file=in_file, out_file=out_file))
+        # Run it #
+        subprocess.call(ffmpeg_cmd, shell=True)
+
 if __name__ == "__main__":
-    args = parse_args()
+   # Parse args #
+   args = parse_args()
 
-    # Initialise class #
-    media_tools = MediaTools(args.source)
-    if args.mp3:
-        media_tools.convert_to_mp3()
-
+   # Initialise class #
+   media_tools = MediaTools(args.source)
+   # Args conditions #
+   if args.mp3:
+       media_tools.convert_to_mp3()
+   elif args.cut:
+       # unpacking start and stop values #
+       # from args.cut, It has 2 values #
+       start, stop = args.cut
+       media_tools.cut_it(start, stop)
