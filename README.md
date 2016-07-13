@@ -1,9 +1,9 @@
 # Media tools
 
-> `Media tools` is combination of lots of tools. I want to make it so that it
-> could be the solution for all media task, if not all at least for most of
-> them. For example conversion between media files, cut parts of file (make ringtunes), make
-> gifs etc. For this task I am going to use `ffmpeg` tool with Python. I also
+> `Media tools` is a combination of a lot of tools. I wanted to make it so that it
+> would be the solution for all media tasks, if not all at least most of
+> them. For example, conversion between media files, cut parts of files (make ringtones), make
+> gifs, etc. For these tasks I am going to use the `ffmpeg` tool with Python. I also
 > want to make a light weight gui for it.
 
 Usage
@@ -34,7 +34,7 @@ TODO
 Contributing
 ------------
 
-Feel free to improve `Media tools`. All kind of pull-requests are welcome.
+Feel free to improve `Media tools`. All kinds of pull-requests are welcome.
 
 LICENSE
 ------
