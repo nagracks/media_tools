@@ -30,8 +30,9 @@ TODO
 
 `Media tools` is a work in progress, so any ideas and patches are appreciated.
 
-* [x] Convert any media to mp3
 * [x] Cut part of mp3 file
+* [x] Convert any media to mp3
+* [x] Convert any media to mp4
 
 Contributing
 ------------
