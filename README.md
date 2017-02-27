@@ -43,5 +43,5 @@ LICENSE
 ------
 
 `Media tools` is licensed under 
-[GPL3](https://github.com/nagracks/media_tools/blob/master/LICENSE)
+[MIT](https://github.com/nagracks/media_tools/blob/master/LICENSE)
 
